@@ -127,6 +127,15 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
 <label>Land Colour 🌳</label>
 <input type="color" id="landColor" value="#70c779">
   
+<label>Cloud Density ☁️</label>
+<input
+  type="range"
+  id="cloudDensity"
+  min="0"
+  max="100"
+  value="80">
+  
+  
   
 <label>Atmosphere color</label>
 <input type="color" id="color" value="#16a58c">
@@ -152,6 +161,14 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
 </main>
 <footer>Planet Builder © 2026 | Create. Explore. Imagine.</footer>
 <script>
+  
+const cloudDensity = $("cloudDensity");
+const clouds = document.querySelector(".clouds");
+
+cloudDensity.addEventListener("input", () => {
+  clouds.style.opacity = cloudDensity.value / 100;
+});
+  
 const $=id=>document.getElementById(id);
 const planet=$("planet");
   
