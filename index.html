@@ -108,7 +108,7 @@ planet.addEventListener("pointerdown", (e) => {
 planet.addEventListener("pointermove", (e) => {
   if (!dragging) return;
 
-  angle += e.clientX - startX;
+  angle += (e.clientX - startX) * 3;
   startX = e.clientX;
 
   planet.style.transform = `rotate(${angle}deg)`;
