@@ -52,7 +52,7 @@ main{max-width:950px;margin:auto;padding:15px}
   pointer-events:none;
 }
   
-.planet:after{content:"";position:absolute;inset:15% 10%;border-radius:50%;background:radial-gradient(ellipse at 35% 35%,var(--land-color, #70c779) 0 13%,transparent 14%),radial-gradient(ellipse at 65% 65%,var(--land-color, #70c779) 0 17%,transparent 18%);opacity:.8}
+.planet:after{content:"";position:absolute;inset:15% 10%;border-radius:50%;background:radial-gradient(ellipse at 35% 35%,var(--land-color, #70c779) 0 13%,transparent 14%),radial-gradient(ellipse at 65% 65%,var(--land-color, #70c779) 0 17%,transparent 18%);opacity:var(--forest-opacity, .8);}
 .panel{background:#131d38;border:1px solid #263957;border-radius:15px;padding:18px;margin:15px 0}
 h2{font-size:19px;color:#79dfff}
 label{display:block;margin:14px 0 7px}
@@ -135,6 +135,11 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
   max="100"
   value="80">
   
+<label>Forest Density 🌳</label>
+<input type="range" id="forestDensity"
+min="0" max="100" value="80">
+  
+  
   
   
 <label>Atmosphere color</label>
@@ -171,6 +176,16 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  
+const forestDensity = $("forestDensity");
+
+forestDensity.addEventListener("input", () => {
+  planet.style.setProperty(
+    "--forest-opacity",
+    forestDensity.value / 100
+  );
+});
+  
   
 const landColor = $("landColor");
 
