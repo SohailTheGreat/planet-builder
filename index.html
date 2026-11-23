@@ -151,6 +151,14 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
 const $=id=>document.getElementById(id);
 const planet=$("planet");
   
+const oceanColor = $("oceanColor");
+
+oceanColor.addEventListener("input", () => {
+  planet.style.background =
+    `radial-gradient(circle at 30% 25%, #a1ffda, ${oceanColor.value} 42%, #07517d 75%, #061d40)`;
+});
+  
+  
 let dragging = false;
 let startX = 0;
 let angle = 0;
