@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planet Builder - Create Your Own World</title>
+<meta name="description" content="Create and customize your own planet. Explore oceans, forests, mountains, colors and imaginary worlds with Planet Builder.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080d20;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:24px 12px}
+h1{color:#71e5ff;margin:5px}
+main{max-width:950px;margin:auto;padding:15px}
+.scene{height:340px;display:grid;place-items:center;overflow:hidden}
+.planet{width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#a1ffda,#16a58c 42%,#07517d 75%,#061d40);box-shadow:inset -25px -20px 40px #0009,0 0 65px #31b8ff66;transition:.3s;position:relative}
+.planet:after{content:"";position:absolute;inset:15% 10%;border-radius:50%;background:radial-gradient(ellipse at 35% 35%,#70c779 0 13%,transparent 14%),radial-gradient(ellipse at 65% 65%,#80c56d 0 17%,transparent 18%);opacity:.8}
+.panel{background:#131d38;border:1px solid #263957;border-radius:15px;padding:18px;margin:15px 0}
+h2{font-size:19px;color:#79dfff}
+label{display:block;margin:14px 0 7px}
+input,select,button{width:100%;padding:12px;border-radius:9px;border:1px solid #405273;background:#0c1530;color:white}
+input[type=range]{padding:0;accent-color:#49d7ff}
+button{background:#087ea5;border:0;font-weight:bold;cursor:pointer;margin-top:12px}
+button:active{transform:scale(.98)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
+@media(max-width:500px){.planet{width:190px;height:190px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>🌍 PLANET BUILDER</h1>
+<p>Create a world of your own imagination</p>
+</header>
+<main>
+<div class="scene">
+<div class="planet" id="planet"></div>
+</div>
+<div class="panel">
+<h2>🪐 Your Planet</h2>
+<label>Planet name</label>
+<input id="planetName" placeholder="Name your planet" maxlength="30">
+<label>Planet type</label>
+<select id="type">
+<option value="earth">Earth-like</option>
+<option value="desert">Desert</option>
+<option value="ice">Ice world</option>
+<option value="alien">Alien world</option>
+</select>
+<label>Atmosphere color</label>
+<input type="color" id="color" value="#16a58c">
+<label>Ocean coverage</label>
+<input type="range" id="ocean" min="0" max="100" value="60">
+<label>Temperature: <span id="tempText">Normal</span></label>
+<input type="range" id="temp" min="0" max="100" value="50">
+<label>Planet size</label>
+<input type="range" id="size" min="130" max="280" value="230">
+<label>Planet rings</label>
+<select id="rings">
+<option value="none">No rings</option>
+<option value="ring">Add rings</option>
+</select>
+<button id="save">💾 Save My Planet</button>
+<button id="reset">↻ Reset Planet</button>
+<p id="status" aria-live="polite"></p>
+</div>
+<div class="panel">
+<h2>🌌 About Planet Builder</h2>
+<p>Explore your creativity by designing imaginary planets. Change their appearance, experiment with environments and give every world a unique name.</p>
+</div>
+</main>
+<footer>Planet Builder © 2026 | Create. Explore. Imagine.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const planet=$("planet");
+function update(){
+const type=$("type").value;
+const color=$("color").value;
+const ocean=+$("ocean").value;
+const size=+$("size").value;
+let base=color;
+if(type==="desert")base="#d28b43";
+if(type==="ice")base="#a8eaff";
+if(type==="alien")base="#a65bd9";
+planet.style.background=`radial-gradient(circle at 30% 25%, white, ${base} ${ocean}%, #071d42)`;
+planet.style.width=size+"px";
+planet.style.height=size+"px";
+planet.style.boxShadow=`inset -25px -20px 40px #0009,0 0 65px ${color}88`;
+planet.style.outline=$("rings").value==="ring"?"9px solid #d9c58b":"none";
+planet.style.outlineOffset="12px";
+$("tempText").textContent=+$("temp").value<30?"Cold":+$("temp").value>70?"Hot":"Normal";
+}
+["type","color","ocean","temp","size","rings"].forEach(id=>$(id).addEventListener("input",update));
+$("save").onclick=()=>{
+const data={name:$("planetName").value||"My Planet",type:$("type").value,color:$("color").value,ocean:$("ocean").value,temp:$("temp").value,size:$("size").value,rings:$("rings").value};
+localStorage.setItem("myPlanet",JSON.stringify(data));
+$("status").textContent="✅ Your planet has been saved on this device!";
+};
+$("reset").onclick=()=>{
+$("planetName").value="";
+$("type").value="earth";
+$("color").value="#16a58c";
+$("ocean").value=60;
+$("temp").value=50;
+$("size").value=230;
+$("rings").value="none";
+update();
+$("status").textContent="Planet reset!";
+};
+update();
+</script>
+</body>
+</html>
