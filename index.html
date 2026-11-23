@@ -92,6 +92,38 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
 <script>
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  
+let dragging = false;
+let startX = 0;
+let angle = 0;
+
+planet.addEventListener("pointerdown", (e) => {
+  dragging = true;
+  startX = e.clientX;
+  planet.style.animation = "none";
+  planet.setPointerCapture(e.pointerId);
+  planet.style.cursor = "grabbing";
+});
+
+planet.addEventListener("pointermove", (e) => {
+  if (!dragging) return;
+
+  angle += e.clientX - startX;
+  startX = e.clientX;
+
+  planet.style.transform = `rotate(${angle}deg)`;
+});
+
+planet.addEventListener("pointerup", () => {
+  dragging = false;
+  planet.style.cursor = "grab";
+});
+
+planet.addEventListener("pointercancel", () => {
+  dragging = false;
+  planet.style.cursor = "grab";
+});
+  
 function update(){
 const type=$("type").value;
 const color=$("color").value;
