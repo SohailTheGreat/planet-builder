@@ -102,6 +102,14 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
   margin-bottom: 15px;
   text-shadow: 0 0 12px #38bdf8;
 }  
+.planet-info {
+  background: #14213d;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+  line-height: 1.8;
+}
 </style>
 </head>
 <body>
@@ -115,6 +123,13 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
 <div class="planet" id="planet">
   <span class="clouds"></span>
 </div>
+  <div class="planet-info">
+  <h3>🪐 Planet Information</h3>
+  <p>Type: <span id="infoType">Earth</span></p>
+  <p>Temperature: <span id="infoTemp">25°C</span></p>
+  <p>Ocean: <span id="infoOcean">70%</span></p>
+  <p>Size: <span id="infoSize">230</span></p>
+  </div>
 </div>
 <div class="panel">
 <h2>🪐 Your Planet</h2>
@@ -190,6 +205,10 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  const infoType = $("infoType");
+const infoTemp = $("infoTemp");
+const infoOcean = $("infoOcean");
+const infoSize = $("infoSize");
   const planetTitle = $("planetTitle");
 const planetName = $("planetName");
 
