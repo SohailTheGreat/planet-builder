@@ -153,7 +153,9 @@ min="0" max="100" value="80">
 <input type="range" id="size" min="130" max="280" value="230">
   <label>Atmosphere Glow ✨</label>
 <input type="range" id="glowLevel" min="0" max="100" value="70">
-<label>Planet rings</label>
+<label>Rotation Speed 🌀</label>
+<input type="range" id="rotationSpeed" min="5" max="40" value="18">
+  <label>Planet rings</label>
 <select id="rings">
 <option value="none">No rings</option>
 <option value="ring">Add rings</option>
@@ -179,6 +181,12 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  const rotationSpeed = $("rotationSpeed");
+
+rotationSpeed.addEventListener("input", () => {
+  planet.style.animationDuration =
+    rotationSpeed.value + "s";
+});
   const glowLevel = $("glowLevel");
 
 glowLevel.addEventListener("input", () => {
