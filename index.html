@@ -28,6 +28,7 @@ h1{color:#71e5ff;margin:5px}
 main{max-width:950px;margin:auto;padding:15px}
 .scene{height:340px;display:grid;place-items:center;overflow:hidden}
 .planet{
+  transform: perspective(600px) rotateY(var(--planet-tilt, 0deg));
   width:230px;
   height:230px;
   border-radius:50%;
