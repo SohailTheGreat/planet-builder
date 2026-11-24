@@ -318,6 +318,10 @@ planet.style.boxShadow=`inset -25px -20px 40px #0009,0 0 65px ${color}88`;
 planet.style.outline=$("rings").value==="ring"?"9px solid #d9c58b":"none";
 planet.style.outlineOffset="12px";
 $("tempText").textContent=+$("temp").value<30?"Cold":+$("temp").value>70?"Hot":"Normal";
+infoType.textContent = type;
+infoTemp.textContent = $("temp").value + "°C";
+infoOcean.textContent = ocean + "%";
+infoSize.textContent = size;
 }
 ["type","color","ocean","temp","size","rings"].forEach(id=>$(id).addEventListener("input",update));
 $("save").onclick=()=>{
