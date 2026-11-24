@@ -151,6 +151,8 @@ min="0" max="100" value="80">
 <input type="range" id="temp" min="0" max="100" value="50">
 <label>Planet size</label>
 <input type="range" id="size" min="130" max="280" value="230">
+  <label>Atmosphere Glow ✨</label>
+<input type="range" id="glowLevel" min="0" max="100" value="70">
 <label>Planet rings</label>
 <select id="rings">
 <option value="none">No rings</option>
@@ -177,6 +179,13 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  const glowLevel = $("glowLevel");
+
+glowLevel.addEventListener("input", () => {
+  const glow = glowLevel.value / 100;
+  planet.style.boxShadow =
+    `0 0 ${glow * 50}px ${glow * 20}px rgba(70,180,255,${glow})`;
+});
   const planetSize = $("planetSize");
 
 planetSize.addEventListener("input", () => {
