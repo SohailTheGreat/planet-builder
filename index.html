@@ -96,7 +96,12 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
   from{transform:translateX(-12px);}
   to{transform:translateX(18px);}
 }
-  
+#planetTitle {
+  text-align: center;
+  color: white;
+  margin-bottom: 15px;
+  text-shadow: 0 0 12px #38bdf8;
+}  
 </style>
 </head>
 <body>
@@ -106,6 +111,7 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
 </header>
 <main>
 <div class="scene">
+  <h2 id="planetTitle">My Planet</h2>
 <div class="planet" id="planet">
   <span class="clouds"></span>
 </div>
@@ -184,6 +190,12 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  const planetTitle = $("planetTitle");
+const planetName = $("planetName");
+
+planetName.addEventListener("input", () => {
+  planetTitle.textContent = planetName.value || "My Planet";
+});
   const planetTilt = $("planetTilt");
 
 planetTilt.addEventListener("input", () => {
