@@ -326,6 +326,15 @@ infoType.textContent = type;
 infoTemp.textContent = $("temp").value + "°C";
 infoOcean.textContent = ocean + "%";
 infoSize.textContent = size;
+  if (type === "earth") {
+  planetDescription.textContent = "A beautiful Earth-like planet with oceans and forests.";
+} else if (type === "desert") {
+  planetDescription.textContent = "A hot and dry desert world.";
+} else if (type === "ice") {
+  planetDescription.textContent = "A cold world covered with ice.";
+} else if (type === "alien") {
+  planetDescription.textContent = "A mysterious alien world waiting to be explored.";
+  }
 }
 ["type","color","ocean","temp","size","rings"].forEach(id=>$(id).addEventListener("input",update));
 $("save").onclick=()=>{
