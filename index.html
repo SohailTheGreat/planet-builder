@@ -417,6 +417,33 @@ update();
 $("status").textContent="Planet reset!";
 };
 update();
+  $("save").addEventListener("click", () => {
+
+  let savedPlanets = JSON.parse(
+    localStorage.getItem("myPlanets") || "[]"
+  );
+
+  const newPlanet = {
+    name: $("planetName").value || "My Planet",
+    type: $("type").value,
+    color: $("color").value,
+    ocean: $("ocean").value,
+    temperature: $("temp").value,
+    size: $("size").value,
+    rings: $("rings").value
+  };
+
+  savedPlanets.push(newPlanet);
+
+  localStorage.setItem(
+    "myPlanets",
+    JSON.stringify(savedPlanets)
+  );
+
+  $("status").textContent =
+    "Your planet has been added to your collection!";
+
+});
 </script>
 </body>
 </html>
