@@ -134,6 +134,17 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
   <p>Size: <span id="infoSize">230</span></p>
   </div>
   <button id="randomPlanet">🎲 Generate Random Planet</button>
+<h3>🌍 Choose Planet Preset</h3>
+
+<select id="planetPreset">
+  <option value="">Select a Planet</option>
+  <option value="earth">Earth</option>
+  <option value="mars">Mars</option>
+  <option value="ice">Ice Planet</option>
+  <option value="alien">Alien Planet</option>
+</select>
+
+<button id="applyPreset">Apply Preset ✨</button>
 </div>
 <div class="panel">
 <h2>🪐 Your Planet</h2>
@@ -209,6 +220,38 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  $("applyPreset").addEventListener("click", () => {
+
+  const preset = $("planetPreset").value;
+
+  if (preset === "earth") {
+    $("type").value = "earth";
+    $("temp").value = 25;
+    $("ocean").value = 70;
+    $("size").value = 230;
+
+  } else if (preset === "mars") {
+    $("type").value = "desert";
+    $("temp").value = -60;
+    $("ocean").value = 5;
+    $("size").value = 180;
+
+  } else if (preset === "ice") {
+    $("type").value = "ice";
+    $("temp").value = -100;
+    $("ocean").value = 20;
+    $("size").value = 250;
+
+  } else if (preset === "alien") {
+    $("type").value = "alien";
+    $("temp").value = 80;
+    $("ocean").value = 45;
+    $("size").value = 280;
+  }
+
+  update();
+
+});
   $("randomPlanet").addEventListener("click", () => {
 
   const types = ["earth", "desert", "ice", "alien"];
