@@ -202,6 +202,10 @@ min="0" max="100" value="80">
 <button id="save">💾 Save My Planet</button>
 <button id="reset">↻ Reset Planet</button>
 <p id="status" aria-live="polite"></p>
+<div class="panel">
+  <h2>🪐 My Saved Planets</h2>
+  <div id="savedPlanetsGallery"></div>
+</div>
 </div>
 <div class="panel">
 <h2>🌌 About Planet Builder</h2>
@@ -443,6 +447,41 @@ update();
   $("status").textContent =
     "Your planet has been added to your collection!";
 
+});
+  function displaySavedPlanets() {
+
+  const savedPlanets = JSON.parse(
+    localStorage.getItem("myPlanets") || "[]"
+  );
+
+  const gallery = $("savedPlanetsGallery");
+
+  gallery.innerHTML = "";
+
+  if (savedPlanets.length === 0) {
+    gallery.textContent = "No saved planets yet!";
+    return;
+  }
+
+  savedPlanets.forEach((planet, index) => {
+
+    const card = document.createElement("div");
+
+    card.innerHTML = `
+      <h3>🪐 ${planet.name}</h3>
+      <p>Type: ${planet.type}</p>
+      <p>Temperature: ${planet.temperature}°C</p>
+      <p>Size: ${planet.size}</p>
+    `;
+
+    gallery.appendChild(card);
+
+  });
+}
+
+displaySavedPlanets();
+  $("save").addEventListener("click", () => {
+  displaySavedPlanets();
 });
 </script>
 </body>
