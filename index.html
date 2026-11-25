@@ -133,6 +133,7 @@ footer{text-align:center;color:#a8b6ca;padding:25px;font-size:13px}
   <p>Ocean: <span id="infoOcean">70%</span></p>
   <p>Size: <span id="infoSize">230</span></p>
   </div>
+  <button id="randomPlanet">🎲 Generate Random Planet</button>
 </div>
 <div class="panel">
 <h2>🪐 Your Planet</h2>
@@ -208,6 +209,25 @@ cloudDensity.addEventListener("input", () => {
   
 const $=id=>document.getElementById(id);
 const planet=$("planet");
+  $("randomPlanet").addEventListener("click", () => {
+
+  const types = ["earth", "desert", "ice", "alien"];
+
+  $("type").value =
+    types[Math.floor(Math.random() * types.length)];
+
+  $("temp").value =
+    Math.floor(Math.random() * 150) - 50;
+
+  $("ocean").value =
+    Math.floor(Math.random() * 101);
+
+  $("size").value =
+    Math.floor(Math.random() * 151) + 150;
+
+  update();
+
+});
   const infoType = $("infoType");
   const planetDescription = $("planetDescription");
 const infoTemp = $("infoTemp");
