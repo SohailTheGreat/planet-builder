@@ -203,6 +203,14 @@ min="0" max="100" value="80">
 <button id="reset">↻ Reset Planet</button>
 <p id="status" aria-live="polite"></p>
 <div class="panel">
+  <h3>🌌 Space Background</h3>
+
+<select id="spaceTheme">
+  <option value="default">Deep Space</option>
+  <option value="purple">Purple Galaxy</option>
+  <option value="blue">Blue Nebula</option>
+  <option value="dark">Dark Universe</option>
+</select>
   <h2>🪐 My Saved Planets</h2>
   <div id="savedPlanetsGallery"></div>
 </div>
@@ -482,6 +490,28 @@ update();
 displaySavedPlanets();
   $("save").addEventListener("click", () => {
   displaySavedPlanets();
+});
+  $("spaceTheme").addEventListener("change", () => {
+
+  const theme = $("spaceTheme").value;
+
+  if (theme === "default") {
+    document.body.style.background =
+      "radial-gradient(circle, #172554, #020617)";
+
+  } else if (theme === "purple") {
+    document.body.style.background =
+      "radial-gradient(circle, #581c87, #090014)";
+
+  } else if (theme === "blue") {
+    document.body.style.background =
+      "radial-gradient(circle, #075985, #020617)";
+
+  } else if (theme === "dark") {
+    document.body.style.background =
+      "#000000";
+  }
+
 });
 </script>
 </body>
